@@ -1,13 +1,11 @@
 #!/usr/bin/php
 <?php
 
-use App\Engine\Wikipedia\WikipediaEngine;
-use App\Engine\Wikipedia\WikipediaParser;
-use Symfony\Component\HttpClient\HttpClient;
+use App\SearchCommand;
+use Symfony\Component\Console\Application;
 
 require 'vendor/autoload.php';
 
-$wikipedia = new WikipediaEngine(new WikipediaParser(), HttpClient::create());
-$result = $wikipedia->search('php');
-
-var_dump($result);
+$console = new Application();
+$console->add(new SearchCommand());
+$console->run();
